@@ -27,7 +27,7 @@
     <ClInclude Include="fms_option.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fms_option_black.h">
+    <ClInclude Include="fms_option_normal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fms_math.h">
@@ -47,10 +47,13 @@
     <ClCompile Include="xll_ml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="xll_black.cpp">
+    <ClCompile Include="xll_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="xll_math.cpp">
+    <ClCompile Include="xll_option.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xll_option_normal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

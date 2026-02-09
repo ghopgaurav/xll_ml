@@ -10,6 +10,7 @@
 #pragma once
 #include <cmath>
 #include <limits>
+#include <tuple>
 
 namespace fms::option {
 
@@ -66,6 +67,30 @@ namespace fms::option {
 		auto call(F f, S s, K k, const model<F, S>& m)
 		{
 			return 0; 
+		}
+
+		// Black-Scholes/Merton model.
+		// In B-S/M F = s0 exp(r t) exp(sigma B_t - sigma^2 t/2)
+		// Since F = f exp(s X - s^2/2),
+		// we have f = s0 exp(r t) and s = sigma * sqrt(t).
+		namespace bsm {
+			// Return f and s Black parameters from B-S/M parameters
+			template<class F = double, class S = double>
+			inline std::tuple<F,S> bsm_to_black()
+			{	
+				return { s0 * std::exp(r * t), sigma * std::sqrt(t) };
+			}
+
+			template<class F = double, class S = double>
+			inline auto moneyness(double s0, double r, double sigma, double k, double t,
+				const model<F,S>& m)
+			{
+				auto [f, s] = bsm_to_black(s0, r, sigma, t);
+				
+				return black::moneyness(f, s, k, m);
+			}
+
+			//  TODO: implement bsm::put and bsm::call.
 		}
 	}
 

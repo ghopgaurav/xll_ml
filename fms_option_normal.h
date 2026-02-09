@@ -1,18 +1,17 @@
-// fms_option_black.h - Black model with normal distribution
+// fms_option_normal.h - Black model with normal distribution
 #pragma once
 #include <cmath>
 #include <numbers>
 #include "fms_math.h"
 #include "fms_option.h"
 
-namespace fms::option::black {
+namespace fms::option {
 
 	template<class X = double, class S = double>
 	struct normal : model<X, S> {
 		using model<X, S>::T;
 
 		// Standard normal cumulative distribution function
-		// TODO: show ...
 		static X cdf(X x)
 		{
 			return 0.5 * (1 + math::erf_as(x / std::numbers::sqrt2));
